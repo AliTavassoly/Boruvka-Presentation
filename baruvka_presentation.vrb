@@ -1,0 +1,34 @@
+\frametitle{Borůvka's Algorithm}
+    \begin{semiverbatim}
+        Input: A weighted undirected graph G = (V, E)
+        Output: F, a minimum spanning forest of G
+
+        Initialize a forest F to (V, E') where E' = {}
+
+        completed := false
+        while not completed do
+            Find the connected components of F and assign to each vertex its component
+            Initialize the cheapest edge for each component to "None"
+            for each edge uv in E, where u and v are in different components of F:
+                let wx be the cheapest edge for the component of u
+                if is-preferred-over(uv, wx) then
+                    Set uv as the cheapest edge for the component of u
+                let yz be the cheapest edge for the component of v
+                if is-preferred-over(uv, yz) then
+                    Set uv as the cheapest edge for the component of v
+            if all components have cheapest edge set to "None" then
+                completed := true
+            else
+                completed := false
+                for each component whose cheapest edge is not "None" do
+                    Add its cheapest edge to E'
+
+        function is-preferred-over(edge1, edge2) is
+            return (edge2 is "None") or
+                    (weight(edge1) < weight(edge2)) or
+                    (weight(edge1) = weight(edge2) and tie-breaking-rule(edge1, edge2))
+
+        function tie-breaking-rule(edge1, edge2) is
+            The tie-breaking rule; returns true if and only if edge1
+            is preferred over edge2 in the case of a tie.
+    \end{semiverbatim}
