@@ -1,1 +1,1 @@
-LaTeX Beamer slides for Boruvka algorithm.
+Slides for presentation to Boruvka algorithm in LaTeX Beamer.
